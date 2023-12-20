@@ -20,7 +20,7 @@ func _process(delta):
 	pass
 "
 
-[node name="BasicEnemy" type="CharacterBody2D"]
+[node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 0
 script = ExtResource("1_hbd0t")
 

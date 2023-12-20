@@ -20,3 +20,7 @@ position = Vector2(106, 71)
 [node name="BasicEnemy" parent="." instance=ExtResource("4_7okkj")]
 position = Vector2(279, 145)
 collision_layer = 2
+
+[node name="BasicEnemy2" parent="." instance=ExtResource("4_7okkj")]
+position = Vector2(168, 231)
+collision_layer = 2
