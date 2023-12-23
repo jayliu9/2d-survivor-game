@@ -29,9 +29,9 @@ func on_timer_timeout():
 		return a_distance < b_distance
 	)
 	
-	var sword_instance = sword_ability.instantiate() as Node2D
+	var sword_instance = sword_ability.instantiate() as SwordAbility
+	player.get_parent().add_child(sword_instance)
+	sword_instance.hitbox_component.damage = 5
 	sword_instance.global_position = enemies[0].global_position + Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
 	var enemy_direction = enemies[0].global_position - sword_instance.global_position
 	sword_instance.rotation = enemy_direction.angle()
-	player.get_parent().add_child(sword_instance)
-	
