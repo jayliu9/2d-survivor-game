@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0eel3s6qbu"]
+[gd_scene load_steps=8 format=3 uid="uid://b0eel3s6qbu"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_7egpn"]
 [ext_resource type="PackedScene" uid="uid://calcj30h7rlic" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_4o6nf"]
 [ext_resource type="Texture2D" uid="uid://df8o1shu6ylh4" path="res://scenes/game_object/player/player.png" id="2_st6hl"]
+[ext_resource type="PackedScene" uid="uid://cjmhmtlirdsld" path="res://scenes/component/health_component.tscn" id="2_vdl6f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b76mw"]
 radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebj77"]
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f2sjf"]
 radius = 6.0
@@ -14,15 +18,22 @@ radius = 6.0
 collision_layer = 0
 script = ExtResource("1_7egpn")
 
+[node name="HealthComponent" parent="." instance=ExtResource("2_vdl6f")]
+
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_4o6nf")]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PickupArea2D" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
+visible = false
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_b76mw")
 
@@ -30,6 +41,15 @@ shape = SubResource("CircleShape2D_b76mw")
 position = Vector2(0, -8)
 texture = ExtResource("2_st6hl")
 
+[node name="CollisionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_ebj77")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_f2sjf")
